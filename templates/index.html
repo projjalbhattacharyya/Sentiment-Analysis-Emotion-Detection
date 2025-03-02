@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div style="width: 20px;"></div>
+            Sentify{% if emoji %}{{ emoji }}{% endif %}
+    </nav>
+
+    <div class="title">
+        <div class="typing-text" id="typing-text"></div>
+    </div>
+
+    <div class="form-container">
+        <!-- Image Upload Form -->
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="input_type" value="image">
+            <label class="upload-label image-label">
+                <input type="file" name="file" accept="image/*" id="file-upload" onchange="previewFile()" required
+                    hidden>
+                <img id="image-preview" src="#" alt="Image Preview" class="image-preview" style="display:none;">
+            </label>
+            <button type="submit">Predict Image Emotion</button>
+        </form>
+
+        <!-- Speech Upload Form -->
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="input_type" value="speech">
+            <label class="upload-label speech-label" id="speechUploadLabel">
+                <input type="file" name="file" accept=".wav" onchange="showSpeechBox()" required hidden>
+            </label>
+            <button type="submit">Predict Speech Emotion</button>
+        </form>
+
+        <!-- Text Input Form -->
+        <form action="/" method="post">
+            <input type="hidden" name="input_type" value="text">
+            <textarea name="text" class="text-input" placeholder="Enter your text here...." required></textarea>
+            <br>
+            <button type="submit">Predict Text Emotion</button>
+        </form>
+    </div>
+
+    {% if prediction %}
+    <div class="prediction-container">
+        <div class="prediction-box">
+            <h2>Predicted Emotion: {{ prediction|capitalize }} {{ emoji }}</h2>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="confidenceChart"></canvas>
+    </div>
+
+    <script>
+        var confidenceScores = {{ confidence_scores| tojson }};
+        var labels = {{ labels| tojson }};
+        var ctx = document.getElementById('confidenceChart').getContext('2d');
+
+        var confidenceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Confidence Level',
+                    data: confidenceScores,
+                    backgroundColor: 'rgba(225, 167, 0, 0.5)',
+                    borderColor: 'rgba(215, 178, 102, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,  // Ensure graph takes proper space
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Confidence Levels for Predicted Emotion',  // Chart Title
+                        font: {
+                            size: 18
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Emotions',  // X-axis Label
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 1,
+                        title: {
+                            display: true,
+                            text: 'Confidence Score',  // Y-axis Label
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    {% endif %}
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

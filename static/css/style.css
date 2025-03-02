@@ -1,0 +1,414 @@
+html,
+body {
+    margin: 0;
+    padding-bottom: 30px;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background: #F2E8CF;
+    height: auto;
+    /* Ensures the gradient covers the full viewport */
+    margin: 0;
+}
+
+button {
+    margin-top: 10px;
+    font-size: 25px;
+    width: 385px;
+    height: 45px;
+    background-color: #ffa700;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 6px #cc8400, 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+/* Adjust button size for medium screens */
+@media (max-width: 768px) {
+    button {
+        font-size: 22px;
+        width: 320px;
+        height: 35px;
+    }
+}
+
+/* Adjust button size for small screens */
+@media (max-width: 480px) {
+    button {
+        font-size: 17px;
+        width: 220px;
+        height: 35px;
+    }
+}
+
+/* Hover effect - button lifts slightly */
+button:hover {
+    background-color: #ffb733;
+    box-shadow: 0 8px #b37000, 0 12px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Click effect - button presses down */
+button:active {
+    background-color: #e69500;
+    box-shadow: 0 3px #b37000, 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(4px);
+}
+
+.prediction-container {
+    display: flex;
+    justify-content: center;
+    /* Centers the prediction box */
+    margin-top: 8px;
+}
+
+.prediction-box {
+    height: 50px;
+    width: 500px;
+    /* Make width percentage-based for responsiveness */
+    /* Set max-width to prevent excessive stretching */
+    background-color: #fc8019;
+    color: whitesmoke;
+    text-align: center;
+    display: flex;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 6px #b35900, 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .prediction-box {
+        height: 40px;
+        font-size: 13px;
+        width: 320px;
+    }
+}
+
+/* Hover effect - lifts the box slightly */
+.prediction-box:hover {
+    background-color: #ff9d3c;
+    color: white;
+    box-shadow: 0 8px #8a3f00, 0 12px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    font-size: 20px;
+}
+
+/* Adjust hover font size for smaller screens */
+@media (max-width: 600px) {
+    .prediction-box:hover {
+        font-size: 14px;
+        /* Reduce hover font size for smaller screens */
+    }
+}
+
+/* Click effect - box presses down */
+.prediction-box:active {
+    background-color: #e68000;
+    box-shadow: 0 3px #8a3f00, 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(4px);
+}
+
+.title {
+    width: 60%;
+    min-height: 55px;
+    height: auto;
+    background: white;
+    border: 4px solid #fc8019;
+    font-size: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* Ensures wrapping */
+    word-wrap: break-word;
+    /* Helps break long words */
+    overflow-wrap: break-word;
+    /* Alternative for better wrapping */
+    white-space: normal;
+    /* Allows text to wrap naturally */
+    border-radius: 15px;
+    font-weight: bolder;
+    color: #fc8019;
+    transition: all 0.3s ease;
+    margin-top: 45px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .title {
+        width: 80%;
+        /* Increase width to allow wrapping */
+        font-size: 25px;
+        /* Reduce font size for better fit */
+        white-space: normal;
+        /* Ensure text wraps */
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        width: 70%;
+        /* Allow more space for text */
+        font-size: 22px;
+        /* Reduce font size further */
+        line-height: 1.4;
+        /* Increase line spacing for better readability */
+        text-align: center;
+        /* Ensure text remains centered */
+    }
+}
+
+/* Hover Effect - Raised Look */
+.title:hover {
+    background: #ffa700;
+    color: whitesmoke;
+    font-size: 33px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    /* Enhanced shadow */
+    transform: translateY(-2px);
+}
+
+/* Click Effect - Pressed Look */
+.title:active {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+}
+
+/* Typing Effect */
+.typing-text {
+    font-weight: bold;
+    display: inline-block;
+    white-space: normal;
+    /*Allow text wrapping */
+    overflow: hidden;
+    border-right: 2px solid orange;
+    padding-right: 5px;
+    animation: blink 1s infinite;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+/* Cursor Blink Animation */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    /* Aligns forms horizontally in the center */
+    gap: 40px;
+    /* Adds space between each form */
+    margin: 10px 0;
+    flex-wrap: wrap;
+    /* Allows forms to wrap to the next line on smaller screens */
+}
+        
+form {
+    background-color: #fffee7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 450px;
+    width: 400px;
+    /* Set a fixed width for each form */
+    transition: all 0.3s ease;
+}
+
+/* Upload Label Styling */
+.upload-label {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 385px;
+    width: 380px;
+    /* Adjust height as needed */
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    margin-left: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Medium Screens (Tablets) */
+@media (max-width: 768px) {
+    form {
+        width: 400px;
+        height: 450px;
+        padding: 20px;
+    }
+
+    .upload-label {
+        width: 380px;
+        height: 385px;
+    }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 480px) {
+    form {
+        width: 250px;
+        height: 300px;
+        padding: 10px;
+    }
+
+    .upload-label {
+        width: 230px;
+        height: 235px;
+    }
+}
+        
+input[type="file"],
+input[type="text"] {
+    margin-bottom: 10px;
+    width: 100%;
+    /* Makes the input fields take up the full width of the form */
+}
+                
+.text-input {
+    height: 390px;
+    width: 390px;
+    border-radius: 8px;
+    padding: 10px;
+    /* Add padding for better text visibility */
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect overall dimensions */
+    font-size: large;
+}
+
+/* Medium Screens (Tablets) */
+@media (max-width: 768px) {
+    .text-input {
+        width: 390px;
+        height: 390px;
+        padding: 10px;
+    }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 480px) {
+    .text-input {
+        width: 240px;
+        height: 240px;
+        padding: 10px;
+    }
+}
+
+.upload-label.image-label::before {
+    content: 'Upload your image';
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    color: #ccc;
+}
+
+.upload-label.speech-label::before {
+    content: 'Upload your speech';
+    text-align: center;
+    display: block;
+    font-size: 16px;
+    color: #ccc;
+}
+
+.image-preview,
+.speech-preview {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Maintain aspect ratio */
+}
+
+/* Navbar styles */
+.navbar {
+    width: 100vw;
+    /* Ensures it covers the full viewport width */
+    height: 80px;
+    background: linear-gradient(to bottom, #FF6A1A, #FF7733);
+    display: flex;
+    align-items: center;
+    position: static;
+    /* Keeps navbar fixed at the top */
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect - makes navbar look even more elevated */
+.navbar:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Responsive Fix */
+@media (max-width: 480px) {
+    .navbar {
+        font-size: 30px;
+        /* Adjust font size for smaller screens */
+        padding-left: 0px;
+    }
+}
+
+
+.chart-container {
+    width: 850px;
+    /* Limits maximum size */
+    margin-top: 30px;
+    padding-bottom: 50px;
+}
+
+/* Medium Screens (Tablets) */
+@media (max-width: 880px) {
+    .chart-container {
+        width: 600px;
+        /* Shrinks the chart */
+    }
+}
+
+/* Small Screens (Phones) */
+@media (max-width: 620px) {
+    .chart-container {
+        width: 320px;
+        /* Adapts width dynamically */
+        padding-bottom: 30px;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+canvas {
+    width: 100% !important;
+    height: 550px !important;
+    /* Increase height */
+}
