@@ -188,6 +188,22 @@ button:active {
     transform: translateY(-2px);
 }
 
+/* Adjust hover effect for tablets */
+@media (max-width: 768px) {
+    .title:hover {
+        font-size: 27px;
+        /* Smaller hover font size */
+    }
+}
+
+/* Adjust hover effect for mobile screens */
+@media (max-width: 480px) {
+    .title:hover {
+        font-size: 24px;
+        /* Further reduce hover font size */
+    }
+}
+
 /* Click Effect - Pressed Look */
 .title:active {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
